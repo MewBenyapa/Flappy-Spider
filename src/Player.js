@@ -3,16 +3,23 @@ var Player = cc.Sprite.extend({
         this._super();
         this.initWithFile( 'res/images/SpiderMan.png' );
         this.vy = 15;
+        this.started = false;
     },
     
     update: function( dt ) {
-        var pos = this.getPosition();
-        this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
-        this.vy += -1;
+        if ( this.started ) {
+            var pos = this.getPosition();
+            this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
+            this.vy += -1;
+        }
     },
     
     jump: function() {
         this.vy = Player.JUMPING_VELOCITY;
+    },
+    
+    start: function() {
+        this.started = true;
     }
     
 });

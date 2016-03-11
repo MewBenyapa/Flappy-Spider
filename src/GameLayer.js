@@ -4,8 +4,8 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0, 0 ) );
         
         this.player = new Player();
-        player.setPosition( new cc.Point( 400, 300 ) );
         this.addChild( this.player );
+        this.player.setPosition( new cc.Point( 400, 300 ) );
         this.player.scheduleUpdate();
         this.addKeyboardHandlers();
         return true;
@@ -31,6 +31,7 @@ var GameLayer = cc.LayerColor.extend({
         if ( this.state == GameLayer.STATES.STARTED ) {
             this.player.jump();
         }
+        this.player.start();
     },
  
     onKeyUp: function( keyCode, event ) {
@@ -38,7 +39,7 @@ var GameLayer = cc.LayerColor.extend({
 });
 
 GameLayer.STATES = {
-    FRONT = 1,
+    FRONT: 1,
     STARTED: 2
 };
     
